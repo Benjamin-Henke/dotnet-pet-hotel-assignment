@@ -5,7 +5,15 @@ using System;
 
 namespace pet_hotel
 {
-    public enum PetBreedType {}
-    public enum PetColorType {}
-    public class Pet {}
+    public class Pet 
+    {
+        public int id {get; set;}
+        public enum PetBreedType {}
+        public enum PetColorType {}
+        
+        [ForeignKey("PetOwner")]
+        public int PetOwnerId {get; set;}
+
+    }
+  
 }
