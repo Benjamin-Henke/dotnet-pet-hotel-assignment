@@ -14,6 +14,9 @@ namespace pet_hotel
         public string  name {get; set;}
 
         [Required]
-        public string email {get; set;}
+        public string emailAddress{get; set;}
+
+        [Required]
+        public int petCount {get; set;}
     }
 }

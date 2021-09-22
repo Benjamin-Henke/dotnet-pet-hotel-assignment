@@ -40,13 +40,16 @@ namespace dotnet_bakery.Migrations
                         .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
-                    b.Property<string>("email")
+                    b.Property<string>("emailAddress")
                         .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<string>("name")
                         .IsRequired()
                         .HasColumnType("text");
+
+                    b.Property<int>("petCount")
+                        .HasColumnType("integer");
 
                     b.HasKey("id");
 
