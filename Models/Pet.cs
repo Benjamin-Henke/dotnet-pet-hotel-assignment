@@ -5,32 +5,41 @@ using System;
 
 namespace pet_hotel
 {
+    public enum PetBreedType 
+    {
+        Shepherd, 
+        Poodle, 
+        Beagle, 
+        Bulldog, 
+        Terrier, 
+        Boxer, 
+        Labrador, 
+        Retriever
+    }
+        
+    public enum PetColorType 
+    {
+        White,
+        Black, 
+        Golden, 
+        Tricolor, 
+        Spotted
+    }
+
     public class Pet 
     {
-        public int id {get; set;}
-        public enum PetBreedType 
-        {
-            Shepherd, 
-            Poodle, 
-            Beagle, 
-            Bulldog, 
-            Terrier, 
-            Boxer, 
-            Labrador, 
-            Retriever
-        }
-        public enum PetColorType 
-        {
-            White,
-            Black, 
-            Golden, 
-            Tricolor, 
-            Spotted
-        }
-        
-        [ForeignKey("PetOwner")]
-        public int PetOwnerId {get; set;}
+        public int id { get; set; }
 
+        public PetBreedType PetBreed { get; set; }
+        
+        public PetColorType PetColor { get; set; }
+        
+
+        [DataType(DataType.Date)]
+        public DateTime CheckedInAt { get; set; }
+
+        [ForeignKey("PetOwner")]
+        public int PetOwnerId { get; set; }
     }
   
 }
