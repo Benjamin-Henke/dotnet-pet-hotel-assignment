@@ -24,9 +24,6 @@ namespace pet_hotel.Controllers
             return _context.PetOwner;
         }
 
-        // [HttpGet]
-        // public IEnumerable<PetOwner> GetById(int id)
-
         [HttpPost]
         public PetOwner Post(PetOwner petowner)
         {
@@ -34,6 +31,14 @@ namespace pet_hotel.Controllers
             _context.SaveChanges();
 
             return petowner;
+        }
+
+        [HttpDelete("{id}")]
+        public void Delete(int id) 
+        {
+            PetOwner petowner = _context.PetOwner.Find(id);
+            _context.PetOwner.Remove(petowner);
+            _context.SaveChanges();
         }
     }
 }

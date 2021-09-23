@@ -28,41 +28,6 @@ namespace pet_hotel.Controllers
                 .Include(pet => pet.petOwner); 
         }
 
-
-
-        // GET /api/bread
-        [HttpGet]
-        public IEnumerable<Bread> GetList() {
-            return _context.Breads
-                .Include(bread => bread.bakedBy);
-        }
-
-
-
-        // [HttpGet]
-        // [Route("test")]
-        // public IEnumerable<Pet> GetPets() {
-        //     PetOwner blaine = new PetOwner{
-        //         name = "Blaine"
-        //     };
-
-        //     Pet newPet1 = new Pet {
-        //         name = "Big Dog",
-        //         petOwner = blaine,
-        //         color = PetColorType.Black,
-        //         breed = PetBreedType.Poodle,
-        //     };
-
-        //     Pet newPet2 = new Pet {
-        //         name = "Little Dog",
-        //         petOwner = blaine,
-        //         color = PetColorType.Golden,
-        //         breed = PetBreedType.Labrador,
-        //     };
-
-        //     return new List<Pet>{ newPet1, newPet2};
-        // }
-
         [HttpPost]
         public Pet Post(Pet pet)
         {
@@ -72,16 +37,12 @@ namespace pet_hotel.Controllers
             return pet;
         }
 
-        // [HttpPost]
-        // public Bread Post(Bread bread) {
-        //     bread.description = "[REDACTED]";
-
-        //     _context.Add(bread);
-        //     _context.SaveChanges();
-
-        //     return bread;
-        // }
-
-
+        [HttpDelete("{id}")]
+        public void Delete(int id) 
+        {
+            Pet pet = _context.Pet.Find(id);
+            _context.Pet.Remove(pet);
+            _context.SaveChanges();
+        }
     }
 }
