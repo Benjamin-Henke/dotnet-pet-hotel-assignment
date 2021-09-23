@@ -40,7 +40,7 @@ namespace pet_hotel
         public PetBreedType breed { get; set; }
         
         [DataType(DataType.Date)]
-        public DateTime checkedInAt { get; set; }
+        public DateTime? checkedInAt { get; set; }
 
         [ForeignKey("PetOwner")]
         public int petOwnerId { get; set; }

@@ -44,5 +44,62 @@ namespace pet_hotel.Controllers
             _context.Pet.Remove(pet);
             _context.SaveChanges();
         }
+
+        // http://localhost:3000/api/pets/2/checkout
+    //    [HttpPut("{id}/sell")]
+        [HttpPut("{id}/checkout")]
+        public IActionResult Checkout(int id) {
+            Console.WriteLine("CHECK OUT");
+            Pet pet = _context.Pet.Find(id);
+            Console.WriteLine(pet.checkedInAt);
+    
+            DateTime dt = new DateTime(); 
+
+            if(pet.checkedInAt != null) {
+                pet.checkedInAt = null;
+            } else {
+                // DateTime dt = new DateTime();
+                pet.checkedInAt = dt; 
+            }
+            
+            
+            // if (pet == null) return NotFound();
+            // if (pet.checkedInAt != null) return BadRequest(new { error = "Cant reduce inventory below zero" });
+            // // bread.sell();
+            // pet.checkedInAt = 'date';
+            _context.Update(pet);
+            _context.SaveChanges();
+            return Ok(pet);
+        }
+
+        [HttpPut("{id}/checkin")]
+        public IActionResult Checkin(int id) {
+            Console.WriteLine("CHECK IN");
+            Pet pet = _context.Pet.Find(id);
+            DateTime dt = new DateTime(); 
+            if(pet.checkedInAt == null) {
+                pet.checkedInAt = dt;
+            } else {
+                pet.checkedInAt = null; 
+            }
+            _context.Update(pet);
+            _context.SaveChanges();
+            return Ok(pet);
+        }
+
+
     }
 }
+
+
+
+    // [HttpPut("{id}/sell")]
+    // public IActionResult SellById(int id) {
+    //     BreadInventory bread = _context.BreadInventory.Find(id);
+    //     if (bread == null) return NotFound();
+    //     if (bread.inventory <= 0) return BadRequest(new { error = "Cant reduce inventory below zero" });
+    //     bread.sell();
+    //     _context.Update(bread);
+    //     _context.SaveChanges();
+    //     return Ok(bread);
+    // }
