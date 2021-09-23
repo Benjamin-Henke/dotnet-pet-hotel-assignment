@@ -24,6 +24,9 @@ namespace pet_hotel.Controllers
             return _context.PetOwner;
         }
 
+        // [HttpGet]
+        // public IEnumerable<PetOwner> GetById(int id)
+
         [HttpPost]
         public PetOwner Post(PetOwner petowner)
         {

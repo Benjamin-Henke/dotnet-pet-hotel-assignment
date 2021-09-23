@@ -30,10 +30,10 @@ namespace dotnet_bakery.Migrations
                     id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     name = table.Column<string>(type: "text", nullable: false),
-                    breed = table.Column<int>(type: "integer", nullable: false),
                     color = table.Column<int>(type: "integer", nullable: false),
+                    breed = table.Column<int>(type: "integer", nullable: false),
                     checkedInAt = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
-                    petOwnerId = table.Column<int>(type: "integer", nullable: false)
+                    petOwnerId = table.Column<int>(type: "integer", nullable: false),
                 },
                 constraints: table =>
                 {

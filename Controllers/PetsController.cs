@@ -24,8 +24,19 @@ namespace pet_hotel.Controllers
         [HttpGet]
         public IEnumerable<Pet> GetList() 
         {
-            return _context.Pet;
+            return _context.Pet
+                .Include(pet => pet.petOwner); 
         }
+
+
+
+        // GET /api/bread
+        [HttpGet]
+        public IEnumerable<Bread> GetList() {
+            return _context.Breads
+                .Include(bread => bread.bakedBy);
+        }
+
 
 
         // [HttpGet]
