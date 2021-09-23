@@ -10,8 +10,8 @@ using pet_hotel.Models;
 namespace dotnet_bakery.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    [Migration("20210922211829_CreatePetTable")]
-    partial class CreatePetTable
+    [Migration("20210923144858_CreatePetOwnerTable")]
+    partial class CreatePetOwnerTable
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -28,21 +28,27 @@ namespace dotnet_bakery.Migrations
                         .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
-                    b.Property<DateTime>("CheckedInAt")
+                    b.Property<int>("breed")
+                        .HasColumnType("integer");
+
+                    b.Property<DateTime>("checkedInAt")
                         .HasColumnType("timestamp without time zone");
 
-                    b.Property<int>("PetBreed")
+                    b.Property<int>("color")
                         .HasColumnType("integer");
 
-                    b.Property<int>("PetColor")
-                        .HasColumnType("integer");
+                    b.Property<string>("name")
+                        .IsRequired()
+                        .HasColumnType("text");
 
-                    b.Property<int>("PetOwnerId")
+                    b.Property<int>("petOwnerId")
                         .HasColumnType("integer");
 
                     b.HasKey("id");
 
-                    b.ToTable("Pets");
+                    b.HasIndex("petOwnerId");
+
+                    b.ToTable("Pet");
                 });
 
             modelBuilder.Entity("pet_hotel.PetOwner", b =>
@@ -66,6 +72,17 @@ namespace dotnet_bakery.Migrations
                     b.HasKey("id");
 
                     b.ToTable("PetOwner");
+                });
+
+            modelBuilder.Entity("pet_hotel.Pet", b =>
+                {
+                    b.HasOne("pet_hotel.PetOwner", "petOwner")
+                        .WithMany()
+                        .HasForeignKey("petOwnerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("petOwner");
                 });
 #pragma warning restore 612, 618
         }

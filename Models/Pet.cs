@@ -30,16 +30,19 @@ namespace pet_hotel
     {
         public int id { get; set; }
 
-        public PetBreedType PetBreed { get; set; }
-        
-        public PetColorType PetColor { get; set; }
-        
+        [Required]
+        public string name {get; set;}
 
+        public PetBreedType breed { get; set; }
+        
+        public PetColorType color { get; set; }
+        
         [DataType(DataType.Date)]
-        public DateTime CheckedInAt { get; set; }
+        public DateTime checkedInAt { get; set; }
 
-        [ForeignKey("PetOwner")]
-        public int PetOwnerId { get; set; }
+        [ForeignKey("PetOwners")]
+        public int petOwnerId { get; set; }
+
+        public PetOwner petOwner { get; set; }
     }
-  
 }
